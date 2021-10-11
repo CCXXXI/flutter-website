@@ -19,7 +19,8 @@ def check_path(path):
 
         # remove such lines:
         # [foo][bar] Pull request title
-        html = re.sub(r'<p><a href="https://github.com/.*?/pull/\d+">\d+</a> .*?</p>', "", html, )
+        html = re.sub(
+            r'<p><a href="https://github.com/.*?/pull/\d+">\d+</a> .*?</p>', "", html, )
 
         # https://github.github.com/gfm/#reference-link
         if m := re.findall(r"\[[^\[\]]+]\[[^\[\]]*]", html):
