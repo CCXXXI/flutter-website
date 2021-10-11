@@ -11,16 +11,15 @@ def check_path(path):
         with file.open(encoding="utf8") as f:
             html = f.read()
 
+        # remove comments
+        html = re.sub(r"<!--.*?-->", "", html, flags=re.DOTALL)
+
         # remove code blocks
         html = re.sub(r"<pre.*?</pre>", "", html, flags=re.DOTALL)
 
         # remove such lines:
         # [foo][bar] Pull request title
-        html = re.sub(
-            r'<p><a href="https://github.com/.*?/pull/\d+">\d+</a> .*?</p>',
-            "",
-            html,
-        )
+        html = re.sub(r'<p><a href="https://github.com/.*?/pull/\d+">\d+</a> .*?</p>', "", html, )
 
         # https://github.github.com/gfm/#reference-link
         if m := re.findall(r"\[[^\[\]]+]\[[^\[\]]*]", html):
