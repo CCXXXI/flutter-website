@@ -11,7 +11,7 @@ def check_path(path):
         with file.open(encoding="utf8") as f:
             html = f.read()
 
-        # remove comments
+        # remove TODOs
         html = re.sub(r"<!--.*?-->", "", html, flags=re.DOTALL)
 
         # remove code blocks
